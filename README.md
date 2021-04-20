@@ -1,4 +1,4 @@
-# [lifehacker]:https://erdeni03.github.io/lifehacker-test/
+[Ссылка на приложение](https://erdeni03.github.io/lifehacker-test/)
 
 ## Project setup
 
