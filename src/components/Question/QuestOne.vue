@@ -39,6 +39,8 @@
                 Улицы зимнего Нью-Йорка я всегда узнаю
               </button>
             </div>
+            <!-- Первый вывод результата сделан с помощью фильтра, последующие компонентный подход. 
+            Какой подход более правильнее? -->
             <res-text-one v-else></res-text-one>
           </template>
 
@@ -57,7 +59,7 @@
 </template>
 
 <script>
-import ResTextOne from "../../views/resultOne/ResTextOne"
+import ResTextOne from "../../views/ResTextOne"
 import QuestTwo from "./QuestTwo.vue"
 import Finish from "../Finish"
 
