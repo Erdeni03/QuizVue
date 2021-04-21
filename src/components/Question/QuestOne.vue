@@ -2,22 +2,25 @@
   <b-card no-body class="card" style="max-width: 100%;" v-if="count !== 7">
     <b-row no-gutters class="bg-color row">
       <b-col md :class="bgName" class="global-bg">
-        <b-img
+        <b-img-lazy
           class="mirror-img"
           v-if="result === null"
           :src="require('@/assets/image/mirror-normal.png')"
         />
-        <b-img
+        <b-img-lazy
           class="mirror-img"
           v-else-if="isRight"
           :src="require('@/assets/image/mirror-nice.png')"
         />
-        <b-img
+        <b-img-lazy
           class="mirror-img"
           v-else
           :src="require('@/assets/image/mirror-bad.png')"
         />
-        <b-img :src="require('@/assets/image/helm.png')" class="helm-img" />
+        <b-img-lazy
+          :src="require('@/assets/image/helm.png')"
+          class="helm-img"
+        />
       </b-col>
 
       <b-col md>

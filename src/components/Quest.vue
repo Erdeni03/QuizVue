@@ -4,12 +4,14 @@
       <b-nav class="header" justified>
         <b-nav-item>
           <a href="#"
-            ><b-img :src="require('@/assets/image/logo.svg')"></b-img
+            ><b-img-lazy :src="require('@/assets/image/logo.svg')"></b-img-lazy
           ></a>
         </b-nav-item>
         <b-nav-item>
           <a href="#"
-            ><b-img :src="require('@/assets/image/logo-2.svg')"></b-img
+            ><b-img-lazy
+              :src="require('@/assets/image/logo-2.svg')"
+            ></b-img-lazy
           ></a>
         </b-nav-item>
       </b-nav>
@@ -17,10 +19,10 @@
 
     <div class="wrapper" v-if="isStart">
       <div class="main">
-        <b-img
+        <b-img-lazy
           :src="require('@/assets/image/bg-start.jpg')"
           class="main__img"
-        ></b-img>
+        ></b-img-lazy>
         <div class="main__card">
           <div class="main__block">
             <b-container>
@@ -50,13 +52,19 @@
       <b-row class="footer">
         <b-col sm class="footer__icons text-center">
           <a href="#" class="icon-link"
-            ><b-img :src="require('@/assets/image/icon-bird.svg')"></b-img
+            ><b-img-lazy
+              :src="require('@/assets/image/icon-bird.svg')"
+            ></b-img-lazy
           ></a>
           <a href="#" class="icon-link"
-            ><b-img :src="require('@/assets/image/icon-vk.svg')"></b-img
+            ><b-img-lazy
+              :src="require('@/assets/image/icon-vk.svg')"
+            ></b-img-lazy
           ></a>
           <a href="#" class="icon-link"
-            ><b-img :src="require('@/assets/image/icon-facebook.svg')"></b-img
+            ><b-img-lazy
+              :src="require('@/assets/image/icon-facebook.svg')"
+            ></b-img-lazy
           ></a>
         </b-col>
         <b-col sm class="footer__links text-center">

@@ -61,15 +61,19 @@
 
               <b-col cols="auto" lg class="text-center mb-3 pr-0">
                 <a href="#" class="icon-link"
-                  ><b-img :src="require('@/assets/image/icon-bird.svg')"></b-img
+                  ><b-img-lazy
+                    :src="require('@/assets/image/icon-bird.svg')"
+                  ></b-img-lazy
                 ></a>
                 <a href="#" class="icon-link"
-                  ><b-img :src="require('@/assets/image/icon-vk.svg')"></b-img
+                  ><b-img-lazy
+                    :src="require('@/assets/image/icon-vk.svg')"
+                  ></b-img-lazy
                 ></a>
                 <a href="#" class="icon-link"
-                  ><b-img
+                  ><b-img-lazy
                     :src="require('@/assets/image/icon-facebook.svg')"
-                  ></b-img
+                  ></b-img-lazy
                 ></a>
               </b-col>
             </b-row>
