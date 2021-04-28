@@ -1,93 +1,78 @@
 <template>
-  <div>
-    <b-container fluid>
-      <b-nav class="header" justified>
-        <b-nav-item>
-          <a href="#"
-            ><b-img-lazy :src="require('@/assets/image/logo.svg')"></b-img-lazy
-          ></a>
-        </b-nav-item>
-        <b-nav-item>
-          <a href="#"
-            ><b-img-lazy
-              :src="require('@/assets/image/logo-2.svg')"
-            ></b-img-lazy
-          ></a>
-        </b-nav-item>
-      </b-nav>
-    </b-container>
-
-    <div class="wrapper" v-if="isStart">
-      <div class="main">
+  <b-card no-body class="card" style="max-width: 100%;" v-if="count !== 7">
+    <b-row no-gutters class="bg-color row">
+      <b-col md :class="bgName" class="global-bg">
         <b-img-lazy
-          :src="require('@/assets/image/bg-start.jpg')"
-          class="main__img"
-        ></b-img-lazy>
-        <div class="main__card">
-          <div class="main__block">
-            <b-container>
-              <div class="main__card-title">
-                Узнаете ли вы Россию?<br /><span>ПО ДОРОГАМ?</span>
-              </div>
-            </b-container>
-          </div>
-          <div class="main__block--top">
-            <b-container>
-              <div class="mt-4 mb-5">
-                Мы составили этот тест вместе с производителем шин
-                <a href="#" class="link">Cordiant</a>, чтобы вы проверили,
-                сможете ли отличить российские дороги от остальных. Активируйте
-                внутреннего Шерлока и вперёд! Пройдёте тест до конца — получите
-                скидку 15% на зимнюю резину.
-              </div>
+          class="mirror-img"
+          v-if="result === null"
+          :src="require('@/assets/image/mirror-normal.png')"
+        />
+        <b-img-lazy
+          class="mirror-img"
+          v-else-if="isRight"
+          :src="require('@/assets/image/mirror-nice.png')"
+        />
+        <b-img-lazy
+          class="mirror-img"
+          v-else
+          :src="require('@/assets/image/mirror-bad.png')"
+        />
+        <b-img-lazy
+          :src="require('@/assets/image/helm.png')"
+          class="helm-img"
+        />
+      </b-col>
 
-              <button class="main-btn mb-5" @click="isStart = false">
-                Пройти тест!
+      <b-col md>
+        <b-container>
+          <div class="mt-10 mb-5">{{ count }}/6</div>
+
+          <template v-if="isPage === false">
+            <div class="text-center mb-5" v-if="result === null">
+              <b-card-title class="quest-title">
+                Где эта дорога?
+              </b-card-title>
+              <button class="quest-btn" @click="resultThree('one')">
+                В Москве! Коммунальные службы, как всегда, тормозят
               </button>
-            </b-container>
-          </div>
-        </div>
-      </div>
+              <button class="quest-btn" @click="resultThree('two')">
+                Судя по снегопаду, где-то в центре Хельсинки
+              </button>
+              <button class="quest-btn" @click="resultThree('three')">
+                Улицы зимнего Нью-Йорка я всегда узнаю
+              </button>
+            </div>
+            <!-- Первый вывод результата сделан с помощью фильтра, последующие компонентный подход. 
+            Какой подход более правильнее? -->
+            <res-text-one v-else></res-text-one>
+          </template>
 
-      <b-row class="footer">
-        <b-col sm class="footer__icons text-center">
-          <a href="#" class="icon-link"
-            ><b-img-lazy
-              :src="require('@/assets/image/icon-bird.svg')"
-            ></b-img-lazy
-          ></a>
-          <a href="#" class="icon-link"
-            ><b-img-lazy
-              :src="require('@/assets/image/icon-vk.svg')"
-            ></b-img-lazy
-          ></a>
-          <a href="#" class="icon-link"
-            ><b-img-lazy
-              :src="require('@/assets/image/icon-facebook.svg')"
-            ></b-img-lazy
-          ></a>
-        </b-col>
-        <b-col sm class="footer__links text-center">
-          <a href="#" class="link footer__links-link">Лайфхакер</a>
-          <span>|</span>
-          <a href="#" class="link footer__links-link">Cordiant</a>
-          <span>© 2020</span>
-        </b-col>
-      </b-row>
+          <quest-two v-else></quest-two>
+        </b-container>
+      </b-col>
+    </b-row>
+    <div class="footer-quest">
+      <a href="#" class="link footer__links-link">Лайфхакер</a>
+      <span>|</span>
+      <a href="#" class="link footer__links-link">Cordiant</a>
+      <span>© 2020</span>
     </div>
-
-    <transition> <quest-one v-if="isStart === false"></quest-one></transition>
-  </div>
+  </b-card>
+  <finish v-else></finish>
 </template>
 
 <script>
-import QuestOne from "./Question/QuestOne"
+import ResTextOne from "../views/ResTextOne"
+import QuestTwo from "./Question/QuestTwo"
+import Finish from "./Finish"
+
+import {mapGetters, mapMutations} from "vuex"
+
 export default {
-  components: {QuestOne},
-  data() {
-    return {
-      isStart: true
-    }
-  }
+  methods: mapMutations(["resultThree"]),
+  computed: {
+    ...mapGetters(["bgName", "result", "isPage", "count", "isRight"])
+  },
+  components: {ResTextOne, QuestTwo, Finish}
 }
 </script>
