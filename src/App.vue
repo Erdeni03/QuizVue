@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <Quest />
+    <Start />
   </div>
 </template>
 
 <script>
 import "bootstrap/dist/css/bootstrap.css"
 import "bootstrap-vue/dist/bootstrap-vue.css"
-import Quest from "./components/Quest"
+import Start from "./components/Start"
 export default {
   name: "App",
-  components: {Quest}
+  components: {Start}
 }
 </script>
 
