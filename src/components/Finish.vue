@@ -1,7 +1,7 @@
 <template>
   <b-card no-body class="card" style="max-width: 100%;">
     <b-row no-gutters>
-      <b-col md :class="resName" class="global-bg">
+      <b-col md :class="resultImg" class="global-bg">
         <div></div>
       </b-col>
       <b-col md class="bg-color">
@@ -40,7 +40,7 @@
                 <a
                   href="#"
                   class="text-center reset-btn"
-                  @click.prevent="restart"
+                  @click.prevent="$emit('restart')"
                 >
                   <svg
                     class="icon mr-3"
@@ -60,17 +60,29 @@
               </b-col>
 
               <b-col cols="auto" lg class="text-center mb-3 pr-0">
-                <a href="#" class="icon-link"
+                <a
+                  target="blank"
+                  rel="nofollow noindex"
+                  href="https://twitter.com/intent/tweet?text=https://erdeni03.github.io/lifehacker-test/"
+                  class="icon-link"
                   ><b-img-lazy
                     :src="require('@/assets/image/icon-bird.svg')"
                   ></b-img-lazy
                 ></a>
-                <a href="#" class="icon-link"
+                <a
+                  target="blank"
+                  rel="nofollow noindex"
+                  href="https://vk.com/share.php?url=https://erdeni03.github.io/lifehacker-test/"
+                  class="icon-link"
                   ><b-img-lazy
                     :src="require('@/assets/image/icon-vk.svg')"
                   ></b-img-lazy
                 ></a>
-                <a href="#" class="icon-link"
+                <a
+                  target="blank"
+                  rel="nofollow noindex"
+                  href="http://www.facebook.com/sharer.php?u=https://erdeni03.github.io/lifehacker-test/"
+                  class="icon-link"
                   ><b-img-lazy
                     :src="require('@/assets/image/icon-facebook.svg')"
                   ></b-img-lazy
@@ -111,11 +123,16 @@
 </template>
 
 <script>
-import {mapGetters, mapMutations} from "vuex"
 export default {
-  methods: mapMutations(["restart"]),
+  props: ["answer"],
   computed: {
-    ...mapGetters(["resName", "answer"])
+    resultImg() {
+      return this.answer.length >= 5
+        ? "res-nice"
+        : this.answer.length >= 3
+        ? "res-normal"
+        : "res-bad"
+    }
   }
 }
 </script>

@@ -1,5 +1,10 @@
 <template>
-  <b-card no-body class="card" style="max-width: 100%;" v-if="count !== 7">
+  <b-card
+    no-body
+    class="card"
+    style="max-width: 100%;"
+    v-if="count !== lastPage"
+  >
     <b-row no-gutters class="bg-color row">
       <b-col md :class="bgName" class="global-bg">
         <b-img-lazy
@@ -25,29 +30,35 @@
 
       <b-col md>
         <b-container>
-          <div class="mt-10 mb-5">{{ count }}/6</div>
+          <div class="mt-10 mb-5">{{ count }}/{{ records.length }}</div>
 
-          <template v-if="isPage === false">
+          <div v-for="item in pageCount" :key="item.id">
             <div class="text-center mb-5" v-if="result === null">
               <b-card-title class="quest-title">
-                Где эта дорога?
+                Где эта Дорога?
               </b-card-title>
-              <button class="quest-btn" @click="resultThree('one')">
-                В Москве! Коммунальные службы, как всегда, тормозят
-              </button>
-              <button class="quest-btn" @click="resultThree('two')">
-                Судя по снегопаду, где-то в центре Хельсинки
-              </button>
-              <button class="quest-btn" @click="resultThree('three')">
-                Улицы зимнего Нью-Йорка я всегда узнаю
+              <button
+                class="quest-btn"
+                v-for="quest in item.quests"
+                :key="quest.id"
+                @click="setResult(quest.outcome, item.rightAnswer)"
+              >
+                {{ quest.version }}
               </button>
             </div>
-            <!-- Первый вывод результата сделан с помощью фильтра, последующие компонентный подход. 
-            Какой подход более правильнее? -->
-            <res-text-one v-else></res-text-one>
-          </template>
 
-          <quest-two v-else></quest-two>
+            <div class="quest-text" v-else>
+              {{ result }}
+              <div class="mt-4" v-html="item.promo"></div>
+              <button
+                class="main-btn mb-5 mt-5 w-25"
+                type="button"
+                @click="reset"
+              >
+                Далее
+              </button>
+            </div>
+          </div>
         </b-container>
       </b-col>
     </b-row>
@@ -58,21 +69,59 @@
       <span>© 2020</span>
     </div>
   </b-card>
-  <finish v-else></finish>
+  <finish v-else :answer="answer" @restart="restart"></finish>
 </template>
 
 <script>
-import ResTextOne from "../views/ResTextOne"
-import QuestTwo from "./Question/QuestTwo"
 import Finish from "./Finish"
 
-import {mapGetters, mapMutations} from "vuex"
-
 export default {
-  methods: mapMutations(["resultThree"]),
-  computed: {
-    ...mapGetters(["bgName", "result", "isPage", "count", "isRight"])
+  data() {
+    return {
+      records: [],
+      answer: [],
+      isRight: false,
+      result: null,
+      count: 1,
+      lastPage: null
+    }
   },
-  components: {ResTextOne, QuestTwo, Finish}
+  async created() {
+    try {
+      const res = await fetch("http://localhost:3000/question")
+      this.records = await res.json()
+      this.lastPage = this.records.length + 1
+    } catch (error) {
+      console.log(error)
+    }
+  },
+  methods: {
+    restart() {
+      this.count = 1
+      this.answer = []
+    },
+    setResult(outcome, right) {
+      this.result = outcome
+      if (this.result === right) {
+        this.answer.push(this.result)
+        this.isRight = true
+      }
+    },
+    reset() {
+      this.count++
+      this.result = null
+      this.isRight = false
+    }
+  },
+
+  computed: {
+    pageCount() {
+      return this.records.filter(el => el.id === this.count)
+    },
+    bgName() {
+      return "bg-" + this.count
+    }
+  },
+  components: {Finish}
 }
 </script>

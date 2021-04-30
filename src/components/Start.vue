@@ -51,12 +51,20 @@
 
       <b-row class="footer">
         <b-col sm class="footer__icons text-center">
-          <a href="#" class="icon-link"
+          <a
+            target="blank"
+            rel="nofollow noindex"
+            href="https://twitter.com/intent/tweet?text=https://erdeni03.github.io/lifehacker-test/"
+            class="icon-link"
             ><b-img-lazy
               :src="require('@/assets/image/icon-bird.svg')"
             ></b-img-lazy
           ></a>
-          <a href="#" class="icon-link"
+          <a
+            target="blank"
+            rel="nofollow noindex"
+            href="https://vk.com/share.php?url=https://erdeni03.github.io/lifehacker-test/"
+            class="icon-link"
             ><b-img-lazy
               :src="require('@/assets/image/icon-vk.svg')"
             ></b-img-lazy
@@ -64,7 +72,7 @@
           <a
             target="blank"
             rel="nofollow noindex"
-            href="http://www.facebook.com/sharer.php?u<?php the_permalink();?>"
+            href="http://www.facebook.com/sharer.php?u=https://erdeni03.github.io/lifehacker-test/"
             class="icon-link"
             ><b-img-lazy
               :src="require('@/assets/image/icon-facebook.svg')"
