@@ -1,4 +1,4 @@
-#[DEMO deploy](https://erdeni03.github.io/lifehacker-test/)
+# [DEMO deploy](https://erdeni03.github.io/lifehacker-test/)
 
 ## Project setup
 
