@@ -1,3 +1,3 @@
 module.exports = {
-  publicPath: "/Quizvue/"
+  publicPath: "/quiz-vue/"
 }
