@@ -7,7 +7,7 @@
       <b-col md class="bg-color">
         <div class="block-text mt-10">
           <b-container class="w-75">
-            <template v-if="answer.length >= 5">
+            <template v-if="rightAnswers.length >= 5">
               <b-card-title class="quest-subtitle"
                 >Я — географ-экстрасенс
               </b-card-title>
@@ -16,7 +16,7 @@
                 я вам по фото и географические координаты назову.</b-card-text
               >
             </template>
-            <template v-else-if="answer.length >= 3">
+            <template v-else-if="rightAnswers.length >= 3">
               <b-card-title class="quest-subtitle"
                 >Я — начинающий топограф
               </b-card-title>
@@ -118,18 +118,31 @@
       <span>|</span>
       <a href="#" class="link footer__links-link">Cordiant</a>
       <span>© 2020</span>
+      {{rightAnswers.length}}
     </div>
+
   </b-card>
+
 </template>
 
 <script>
 export default {
-  props: ["answer"],
+  props: {
+    rightAnswers:{
+      required: true,
+      type: Array
+    }
+  },
+
+  async destroyed() {
+    this.$emit('clearDB')
+
+  },
   computed: {
     resultImg() {
-      return this.answer.length >= 5
+      return this.rightAnswers.length >= 5
         ? "res-nice"
-        : this.answer.length >= 3
+        : this.rightAnswers.length >= 3
         ? "res-normal"
         : "res-bad"
     }

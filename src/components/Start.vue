@@ -4,15 +4,19 @@
       <b-nav class="header" justified>
         <b-nav-item>
           <a href="#"
-            ><b-img-lazy :src="require('@/assets/image/logo.svg')"></b-img-lazy
-          ></a>
+          >
+            <b-img-lazy :src="require('@/assets/image/logo.svg')"></b-img-lazy
+            >
+          </a>
         </b-nav-item>
         <b-nav-item>
           <a href="#"
-            ><b-img-lazy
-              :src="require('@/assets/image/logo-2.svg')"
+          >
+            <b-img-lazy
+                :src="require('@/assets/image/logo-2.svg')"
             ></b-img-lazy
-          ></a>
+            >
+          </a>
         </b-nav-item>
       </b-nav>
     </b-container>
@@ -20,14 +24,14 @@
     <div class="wrapper" v-if="isStart">
       <div class="main">
         <b-img-lazy
-          :src="require('@/assets/image/bg-start.jpg')"
-          class="main__img"
+            :src="require('@/assets/image/bg-start.jpg')"
+            class="main__img"
         ></b-img-lazy>
         <div class="main__card">
           <div class="main__block">
             <b-container>
               <div class="main__card-title">
-                Узнаете ли вы Россию?<br /><span>ПО ДОРОГАМ?</span>
+                Узнаете ли вы Россию?<br/><span>ПО ДОРОГАМ?</span>
               </div>
             </b-container>
           </div>
@@ -52,32 +56,38 @@
       <b-row class="footer">
         <b-col sm class="footer__icons text-center">
           <a
-            target="blank"
-            rel="nofollow noindex"
-            href="https://twitter.com/intent/tweet?text=https://erdeni03.github.io/lifehacker-test/"
-            class="icon-link"
-            ><b-img-lazy
-              :src="require('@/assets/image/icon-bird.svg')"
+              target="blank"
+              rel="nofollow noindex"
+              href="https://twitter.com/intent/tweet?text=https://erdeni03.github.io/lifehacker-test/"
+              class="icon-link"
+          >
+            <b-img-lazy
+                :src="require('@/assets/image/icon-bird.svg')"
             ></b-img-lazy
-          ></a>
+            >
+          </a>
           <a
-            target="blank"
-            rel="nofollow noindex"
-            href="https://vk.com/share.php?url=https://erdeni03.github.io/lifehacker-test/"
-            class="icon-link"
-            ><b-img-lazy
-              :src="require('@/assets/image/icon-vk.svg')"
+              target="blank"
+              rel="nofollow noindex"
+              href="https://vk.com/share.php?url=https://erdeni03.github.io/lifehacker-test/"
+              class="icon-link"
+          >
+            <b-img-lazy
+                :src="require('@/assets/image/icon-vk.svg')"
             ></b-img-lazy
-          ></a>
+            >
+          </a>
           <a
-            target="blank"
-            rel="nofollow noindex"
-            href="http://www.facebook.com/sharer.php?u=https://erdeni03.github.io/lifehacker-test/"
-            class="icon-link"
-            ><b-img-lazy
-              :src="require('@/assets/image/icon-facebook.svg')"
+              target="blank"
+              rel="nofollow noindex"
+              href="http://www.facebook.com/sharer.php?u=https://erdeni03.github.io/lifehacker-test/"
+              class="icon-link"
+          >
+            <b-img-lazy
+                :src="require('@/assets/image/icon-facebook.svg')"
             ></b-img-lazy
-          ></a>
+            >
+          </a>
         </b-col>
         <b-col sm class="footer__links text-center">
           <a href="#" class="link footer__links-link">Лайфхакер</a>
@@ -88,12 +98,15 @@
       </b-row>
     </div>
 
-    <transition> <quest v-if="isStart === false"></quest></transition>
+    <transition>
+      <quest v-if="isStart === false"></quest>
+    </transition>
   </div>
 </template>
 
 <script>
 import Quest from "./Quest"
+
 export default {
   components: {Quest},
   data() {
