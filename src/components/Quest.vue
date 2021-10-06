@@ -82,6 +82,7 @@ export default {
       answer: [],
       isRight: false,
       result: null,
+      MAIN: 'MAIN',
       count: 1,
       lastPage: null
     }
