@@ -81,6 +81,9 @@ export default {
       records: [],
       answer: [],
       isRight: false,
+      test3: true,
+      test4: true,
+      tst5: false,
       result: null,
       count: 1,
       lastPage: null
