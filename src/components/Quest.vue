@@ -88,7 +88,7 @@ export default {
   },
   async created() {
     try {
-      const res = await fetch("http://localhost:3000/question")
+      const res = await fetch("https://my-json-server.typicode.com/erdeni03/lifehacker-test/question")
       this.records = await res.json()
       this.lastPage = this.records.length + 1
     } catch (error) {
