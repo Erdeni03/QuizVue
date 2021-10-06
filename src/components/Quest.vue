@@ -73,7 +73,7 @@
 </template>
 
 <script>
-import Finish from "./Finish"
+import Finish from "./Finish";
 
 export default {
   data() {
@@ -81,47 +81,50 @@ export default {
       records: [],
       answer: [],
       isRight: false,
+      test2: true,
       result: null,
       count: 1,
       lastPage: null
-    }
+    };
   },
   async created() {
     try {
-      const res = await fetch("http://localhost:3000/question")
-      this.records = await res.json()
-      this.lastPage = this.records.length + 1
+      const res = await fetch(
+        "https://my-json-server.typicode.com/erdeni03/lifehacker-test/question"
+      );
+      this.records = await res.json();
+      this.lastPage = this.records.length + 1;
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   },
   methods: {
     restart() {
-      this.count = 1
-      this.answer = []
+      this.count = 1;
+      this.answer = [];
     },
     setResult(outcome, right) {
-      this.result = outcome
+      this.result = outcome;
       if (this.result === right) {
-        this.answer.push(this.result)
-        this.isRight = true
+        this.answer.push(this.result);
+        this.isRight = true;
       }
     },
     reset() {
-      this.count++
-      this.result = null
-      this.isRight = false
+      this.count++;
+      this.result = null;
+      this.isRight = false;
     }
   },
 
   computed: {
     pageCount() {
-      return this.records.filter(el => el.id === this.count)
+      return this.records.filter(el => el.id === this.count);
     },
     bgName() {
-      return "bg-" + this.count
+      return "bg-" + this.count;
     }
   },
-  components: {Finish}
-}
+  components: { Finish }
+};
 </script>
